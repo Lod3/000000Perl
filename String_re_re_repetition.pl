@@ -1,6 +1,8 @@
 #! /usr/bin/perl
 use strict;
 use warnings;
+use utf8;
+no utf8; 
 
 my $name= 'fred';
 my $other= 'BARNERY';
