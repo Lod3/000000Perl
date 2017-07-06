@@ -1,3 +1,4 @@
+#! /usr/bin
 use strict;
 use warnings;
 my $name = 'foo';
