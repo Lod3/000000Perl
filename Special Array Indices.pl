@@ -12,5 +12,5 @@ $end = $#rocks;
 $number_of_rocks = $send + 1;
 $rocks[$#rocks] = 'hard rock';
 
-print "@rock[-1]"; 
+print @rock[-1]; 
 

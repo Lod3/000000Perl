@@ -17,6 +17,6 @@ say Dumper \@names;
 
 @nicknames = ("foo", "bar", "baz");
 
-$first_value = shift @nicknames;
+$first_value = shift @nicknames; 
 say "first: $first_value";
 say Dumper \@nicknames;

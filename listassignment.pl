@@ -13,4 +13,4 @@ use warnings;
 # print ("$first");
 
 ($rocks[0], $rocks[1], $rocks[2], $rocks[3]) = qw/tacl mica feldspar quartz/;
-    print ($rocks[0 + 2]);
+    print ($rocks[1]);
