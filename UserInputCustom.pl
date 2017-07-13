@@ -1,4 +1,4 @@
-#! /usr/perl
+#! /usr/perl;
 use warnings;
 
 $line = <STDIN>;
