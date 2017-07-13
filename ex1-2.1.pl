@@ -2,6 +2,8 @@
 use utf8;
 use warnings;
 
-$n = 3.141592654;
-$circ = 2 * $n * 12.5;
-print "The circumference of a circle of radius 12.5 is $circ.\n";
+$pi = 3.141592654;
+print "What is the radius?";
+chomp($radius = <STDIN>);
+$circ = 2 * $pi * $radius;
+print "The circumference of a circle of radius $radius is $circ\n";
