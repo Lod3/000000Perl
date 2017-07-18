@@ -1,10 +1,11 @@
 #! /usr/perl
 use warnings;
 
+
 @rocks = qw/ bedrock slate rubble granite /;
-@sorted = sort(@rocks);
-@back = reverse sort @rocks;
-@rocks = sort @rocks;
+@sorted = sort(@rocks); #sort rocks op alphabetische waarde
+@back = reverse sort @rocks; #omgekeerde sortering
+@rocks = sort @rocks; #terug normaal alfabetische sorteringe
 @numbers = sort 122..2333;
 
 print "\t@numbers\n";
