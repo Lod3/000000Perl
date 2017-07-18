@@ -1,10 +1,14 @@
 #! /usr/perl
 use warnings;
+use strict;
 
-$fred[0] = "yabba";
-$fred[1] = "dabba";
-$fred[2] = "doo";
+my @fred = qw( yabba dabba doo); #print each element of the list on a new line
+    foreach my $fred (@fred){
+        print "\t$fred\n"
+    }
 
 
-print "@fred"
-
+my @rfred = reverse (@fred);
+    foreach my $fred (@rfred){
+    print "$fred";
+}
