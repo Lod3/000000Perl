@@ -1,8 +1,8 @@
 #! /usr/perl
 use warnings;
 
-sub marine {
-<<<<<<< HEAD
+sub marine
+{
      $n +=1;
     print "Hello, sailor $n!\n";
 }
@@ -12,11 +12,3 @@ sub marine {
 &marine;
 &marine;
 &marine;
-=======
-    $n +=1;
-    print "Hello, sailor $n!\n;"
-}
-
-&marine;
-
->>>>>>> master
