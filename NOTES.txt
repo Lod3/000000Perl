@@ -1,0 +1,204 @@
+PERL PERL PERL NOTEPAD 
+
+
+Communicatieve bewerkingen 
+
+bv: 2 + 3*4 = 14 : correct mathematische volgorde ( eerst *)
+Geforceerde mathematische volgorde
+bv: (2+3)*4 = 20
+
+Comparison Operators
+< <= == >= > !=
+
+Comparison - Numeric - String
+equal  ==       eq
+Not equal != ne
+Less than < =lt
+Greater Than > = gt
+Less than or equal to <= le
+Greater than or equal to >= ge
+
+user input 
+$line = <STDIN>; 
+if ($line eq "\n") {
+   print "That was just a blank line!\n";
+  } else { 
+   print "That line of input was: $line";
+  }
+
+???---------------------------------
+undef P40
+
+./Build && ./Build install && dhconveyor transport -p testit.ini -L 3
+------------------------------------------------------------------------------------------
+ListEn Arrays
+
+Meerder waarden in variabele: 
+List and arrays
+
+List = Data & Array = Variabele 
+You can have a list variable that isn't an array but every array variable holds a list (although that list may be empty)
+
+Your next step could be to write a program, and then wehn you get stuck, post a question in SoPW. See SSCCE. (1) This is what I tried; (2) This is is what it produces; (3) This is what I want to happen; (4) Help please?
+
+use 5.18.0 = Use version of perl always in strict mode = "use strict;"
+
+$x =  $x + 100; same thing as $x += 100;;
+Whiespace and comments
+
+Whitespace = space characters, tab characters,  - mostly ignored. 
+except ex. "sub main" ! "submain" needs white spae
+
+{ } around var = clearly var even without whitespace
+Comment to make src code more readable
+
+sub main
+{                   #accolades better idea of placement because more clear  
+ my $filename = shift || "linesfile.txt";
+ my $count = countlines ( $filename );
+}
+
+blocks are  defined by { } 
+
+vars inside block override variable outside block. 
+vars outside block cannot reach var declaration inside block. par ex.
+
+my $x = 1;                                                            my $x = 1;                       
+if ($x) {                                                                  if ($x) {
+    my $y = 2;                            not                          my $y = 2;      
+    say $y;                                                               }
+}                                                                                  say $y
+
+output: Global symbol "$y" requires explicit package name...................
+
+Variable is symply a names container for values. 
+var name can be any set of characters 
+
+3 Perl storage types:
+scalar, holds a single value
+SCALAR variable= SCALAR with $ 
+ARRAY holds series of values = @array = extracting the value will output same order of entered values 
+%HASH, holds a set of key/value pairs.
+
+Perl references,
+A SCALAR that refers to another object
+$x = <STDIN>;
+print $x;
+
+Numeric Variables:
+Assign number to var, 
+my $n = 42;
+$n = $n * 2;
+print "n is $n"; 
+output will be:
+n is 84
+
+[ ] around print variable will show where the var starts in output (shows where the boundries of the string are)
+par ex. 
+"print "n is [$n]";
+
+
+String Value in Perl:
+par ex. 
+my $s = "Hello world";
+print "s is [$s]";
+
+my $s = "Hello world";
+$s = $s . " This is a string. "; ##### concatonation operator "." added one string on top of another.
+print "s is [$s]";
+
+string interpolation  when you have a var inside of the string and that var is expanded inside of the string. 
+
+my $s = "Hello world";
+$s = "This is a string. $s this is another string.";
+print "s is [ $s]";
+
+To expand variable. 
+
+my $s = "Hello world";
+$s = "This is a string. ${s} this is another string.";
+print "s is [ $s]";
+
+escaping
+if you want quote marks use = \"content"\ display " as quote marks not as syntax
+\\ = \ single backslash
+
+qq( content ) = interpolation quote operator -  
+
+-------------------------------------------------------------------- 
+_______________________Logical values_______________________________
+
+Are used in conditionals and loops
+my $x = 1;
+my $y = 1;
+
+if (  $x == $y ) {
+   say 'true';
+} else { 
+     say 'false';
+}
+
+if statement takes a logical value to decide which block of code will be executed 
+== : tests for equality 
+
+Lists and Arrays
+List,  a fixed series of scalar values
+
+print foreach (1, 2, 3);
+out will be: 
+1
+2
+3
+
+qw = quote word operator, create list of strings.
+par ex.
+print qw( one two three )[1]
+
+@array, is a variable data structure that holds a series of scalar values.
+
+my @array = (1, 2, 3); ## creates an array  with the @ sympbol introducing the array                              ######variable. and it initialises the array from a list. 1, 2, 3 is a list of integer      values. That's being used to initialise the array named @array
+my @array = (1, 2, 3)   
+say foreach @array;
+
+Individual element of array can be specified with a subscript. 
+print $array[0];  prints individual value of array
+print $array[2];
+
+---------------------------------------------------------------
+_________________SLICES:_______________________________________
+
+my @array = qw( one two three four five six seven eight nine ten );
+say foreach @array;
+
+print $array[3] will return one value
+
+print @array[1,2,3]; will return list of values.  or individual values
+
+to specify range of indices. 
+
+print @array[1..5] output will be list values from 1 to 6 
+
+because slice returns a list  we can initialise another array with it.
+    for ex:
+
+indexes:          0   1    2    3    4    5    6    7     8    9
+my @array = qw ( one two three four five six seven eight nine ten);
+my $a2 = @array[5,7,2,9];
+say foreach @a2; 
+output will be: 
+
+six 
+eight 
+three 
+ten
+
+----------------------------------------------------------
+___________________________HASH___________________________
+
+hashes special kind of arrays that associates keys and values
+                                  
+my %hash = ( one => 'uno', two => 'dos', three => 'tres', four => 'quatro', five => 'cinco' );
+                                               
+while( my ($k, $v) = each %hash ) {
+    say "$k -> $v";
+}
