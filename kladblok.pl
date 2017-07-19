@@ -2,6 +2,7 @@
 use warnings;
 use strict;
 # use 5.18.0
+<<<<<<< HEAD
 #######Everything goes - testing of all sorts of perls #######
 
 ### my $x += 3;
@@ -14,4 +15,12 @@ use strict;
 ###my  = $x plus 10;
 ###
 ###print $x;
+=======
+#Everything goes - testing of all sorts of perls
+
+my $x += 3;
+
+print $x;
+
+>>>>>>> master
 
