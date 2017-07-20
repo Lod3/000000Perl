@@ -206,3 +206,44 @@ while( my ($k, $v) = each %hash ) {
 -------------------------------------------------------
 _____________________SUBROUTINE/FUCNTION______________
 
+
+#                         \/                            
+#                         || 
+#                         || 
+#do not put a fucking semi\/ colon here or shit goes haywire !
+
+sub sum_of_fred_and_barney                                              #expression containing the invocation "&"
+{ 
+    print "Hey, you called the sum_of_fred_and_barney subroutine!\n";   
+    $fred + $barney; #That's the return value #with addition of "print" $fred + $barney not return value
+    # print "Hey, I'm returing a value from!\n";    #oops #Not the addition anymore; it's now the print statement
+                                                    #whose return value is normally 1, meaning "printing was succesful" 
+                                                    #not the return value requested, be carefull adding additional code 
+                                                    #to a subroutine, since the last expression evaluated will be the return value
+                                                    #a failure would result in return value of 0 or (false?)    
+}
+
+$fred = 3;
+$barney = 4;
+$wilma = &sum_of_fred_and_barney;        # wilma gets 7 because we asked for wilma to become the sum of fred = 3 and barney = 4 wich is 7
+                                         #&sum_of_fred_and_barney calculates the value of the expression containing the invocation. 
+print "\$wilma is $wilma.\n"; 
+
+$betty = 3 * &sum_of_fred_and_barney;      # betty gets 21 because we asked for betty to become the sum of fred = 3 and barney = 4 which is 7 times 3...
+                                           # ...wich is 21
+                                           # betty does everything times 3 because $betty = 3 * x?  
+print "\$betty is $betty.\n"; 
+
+$dino = 5 * &sum_of_fred_and_barney;
+print "\$dino is $dino.\n";
+                                            #warning void context is just a fancy way of saying that you aren't using the answer,
+                                            #whether that means storing it in a variable or using it any other way.
+
+
+hello();
+
+sub hello 
+{
+    say "This is the hello function.';
+}
+
