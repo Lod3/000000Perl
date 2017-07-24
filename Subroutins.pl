@@ -16,20 +16,20 @@ use warnings;
 #                         || 
 #                         || 
 #do not put a fucking semi\/ colon here or shit goes haywire !
-# sub sum_of_fred_and_barney
-# { 
-#     print "Hey, you called the sum_of_fred_and_barney subroutine!\n";
-#     $fred + $barney; #That's the return value
-#     # print "Hey, I'm returing a value from!\n";    #oops #Not the addition anymore; it's now the print statement
-#                                                     #whose return value is normally 1, meaning "printing was succesful" 
-# }                                                    #not the return value requested, be carefull adding additional code 
-#                                                     #to a subroutine, since the last expression evaluated will be the return value
+sub sum_of_fred_and_barney
+{ 
+    print "Hey, you called the sum_of_fred_and_barney subroutine!\n";
+    $fred + $barney; #That's the return value
+    # print "Hey, I'm returing a value from!\n";    #oops #Not the addition anymore; it's now the print statement
+                                                    #whose return value is normally 1, meaning "printing was succesful" 
+}                                                    #not the return value requested, be carefull adding additional code 
+                                                    #to a subroutine, since the last expression evaluated will be the return value
                                                     #a failure would result in return value of 0 or (false?)
 
-# $fred = 3;
-# $barney = 4;
-# $wilma = &sum_of_fred_and_barney;
-# print "\$wilma is $wilma.\n";
+$fred = 3;
+$barney = 4;
+$wilma = &sum_of_fred_and_barney;
+print "\$wilma is $wilma.\n";
 
 # $betty = 3 * &sum_of_fred_and_barney;
 # print "\$betty is $betty.\n"; 

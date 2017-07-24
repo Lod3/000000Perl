@@ -1,8 +1,66 @@
 PERL PERL PERL NOTEPAD 
 
 
-Communicatieve bewerkingen 
 
+
+==========Numerical values / Numerieke waarden===== https://perlmaven.com/numerical-operators
+
+say 2 + 3;   # 5
+say 2 * 3;   # 6
+say 9 - 5;   # 4
+say 8 / 2;   # 4
+ 
+say 8 / 3;   # 2.66666666666667
+# Note that Perl will automatically switch to floating point number when necessary so when we divide 8 by 3 we get a floating point value.
+say 9 % 2;   # 1
+say 9 % 5;   # 4
+ 
+my $x = 2;
+my $y = 3;
+ 
+say $x + $y;  # 5
+say $x / $y;  # 0.666666666666667
+
+-------Shorthand operators---
+The expression $x += 3; is the shorthand version of $x = $x + 3;, they have exactly the same result:
+my $x = 2;
+say $x; # 2
+ 
+$x = $x + 3;
+say $x; # 5
+ 
+my $y = 2;
+say $y;  # 2
+$y += 3;
+say $y;  # 5
+
+#In the general case VARIABLE OP= EXPRESSION is the same as VARIABLE = VARIABLE OP EXPRESSION, but usually easier to read and less error-prone.
+#(We don't repeat the name of VARIABLE.) You can use it with any binary operator:
+#+=, *=, -=, /=, even %=
+
+-----Auto increment and auto decrement----
+#Perl also provides ++ the auto increment, and -- auto decrement operators.
+#They increase and decrease respectively the value of a scalar variable by 1.
+
+my $x = 2;
+say $x; # 2
+$x++;
+say $x; # 3
+ 
+$x--;
+say $x; # 2
+
+#Both the postfix versions $x++, $x-- and the prefix versions ++$x, --$x and they behave the same way as in other languages.
+#In case you are not familiar with them, then this is not the time to become deeply acquainted with them.
+
+#They can be used as part of a larger expression when being pre-fix or post-fix really matters, but in most cases I think the best is to avoid such expressions.
+#They can be fun and a maintenance nightmare. We'll have an article explaining short-circuit and the pitfalls of auto increment with short-circuit.
+
+
+
+----Communicatieve bewerkingen-----
+| 
+|
 bv: 2 + 3*4 = 14 : correct mathematische volgorde ( eerst *)
 Geforceerde mathematische volgorde
 bv: (2+3)*4 = 20
@@ -247,3 +305,83 @@ sub hello
     say "This is the hello function.';
 }
 
+#Lexical Scoping
+#my variable inside the fucntion, "my" keyword creates variable with local scope.
+#$x inside function is used inside function block 
+#local variables will allways take precedent over outside variables
+
+#return values can return 0's or more scalar values as a list
+#
+
+#Returning values #return #subroutines #functions
+
+# print func();
+
+# sub func
+# {
+#     return 'This is a wonderful function.';
+# }
+
+# --------------Using return to get list values-----------------
+
+# print foreach func(). "\n";
+
+# sub func
+# {
+#     return ( 1, 2, 3, 4, 5 );
+# }
+
+# -------------Printing with eacht list element on new line------------------
+
+# print qq($_\n) foreach func();
+# sub func
+# {
+#     return ( 1, 2, 3, 4, 5 );
+# }
+
+
+# -------------------- Static Variables -----------
+
+# func();
+# func();
+# func();
+# func();
+# func();
+# func();
+
+# sub func
+# {
+    
+#    my $n = 10; #n w. 10 
+#    print ++$n; #increment $n 10 w. 11 en print
+# }
+
+# Static variable Example: 
+
+# func();
+# func();
+# func();
+# func();
+# func();
+# func();
+
+# sub func
+# {
+    
+#    state $n = 10; #state counts with increment of 1 gebruikt "use feature 'state'; bovenaan
+#    print ++$n; #increment $n + 1 x aantal "func ();" = 11 12 13 14 15 
+# }
+
+# --------- Predeclared Functions ---------
+#func (); gebruiken op functie te invoken werkt niet met "func;" -> geeft error
+#om functie te gebruiken zoals de predeclared -> use subs qw ( "chooseurself"* ); 
+#Meer om het gebruiksgemak van functies te verhogen. En ze gemakkelijker aan te roepen.
+
+use subs qw( func );
+
+func 'Foo', 'bar', 'baz';
+
+sub func
+{
+   print foreach @_ ;
+}
