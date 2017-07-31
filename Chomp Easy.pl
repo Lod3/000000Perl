@@ -10,5 +10,3 @@ use warnings;
 
 $food = <STDIN>;
 $betty = chomp $food; #gets the value of 1 - but you knew that!
-
-    
