@@ -1,0 +1,30 @@
+{
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// },
+
+"lode's bang for perl":{
+	"prefix": "bang",
+	"body":[
+		"#!/usr/perl",
+		"use warnings;",
+		"use strict;"
+	],
+	"description": "Perl Template"
+},
+
+"quote word":{
+	"prefix": "qw",
+	"body":[
+		"qw($1);",
+		"$2"
+	],
+	"description": "Quote Word"
+}
+
+}
