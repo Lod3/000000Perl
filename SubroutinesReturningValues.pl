@@ -64,6 +64,7 @@ use feature 'state';
 # --------- Predeclared Functions ---------
 #func (); gebruiken op functie te invoken werkt niet met "func;" -> geeft error
 #om functie te gebruiken zoals de predeclared -> use subs qw ( "chooseurself"* ); 
+#Meer om het gebruiksgemak van functies te verhogen. En ze gemakkelijker aan te roepen.
 
 use subs qw( func );
 
