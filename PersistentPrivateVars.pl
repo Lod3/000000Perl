@@ -18,17 +18,23 @@ use strict;
 
 
 use v5.10;
-sub marine 
+# sub marine 
+# {
+#   state $n = 0;
+#   $n += 1;
+#   print "Hello, sailor numer $n!\n";
+
+# }
+
+# marine;
+# marine;
+# marine;
+# marine;
+# marine;
+# marine;
+
+$n = &max(10,15);
+sub max
 {
-  state $n = 0;
-  $n += 1;
-  print "Hello, sailor numer $n!\n";
-
+  if ($_[0] > $_[1])  
 }
-
-marine;
-marine;
-marine;
-marine;
-marine;
-marine;

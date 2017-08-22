@@ -27,4 +27,3 @@ sub total
         $sum += $_;
     }
     $sum;
-}

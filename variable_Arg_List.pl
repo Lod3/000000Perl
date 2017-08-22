@@ -18,6 +18,9 @@ foreach (1..10)
     print "$_ squared is $square\n";
 }
 
+
+
 my $value = 10,
 
 print $value;
+

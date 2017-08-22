@@ -19,10 +19,7 @@ $sum/$count;
 sub above_average {
 my $average = average(@_);
 my @list;
-foreach my $element (@_) {
-            if ($element > $average) {
-push @list, $element;
-}
-}
+foreach my $element (@_) { if ($element > $average) {push @list, $element;}}
 }
 @list;
+

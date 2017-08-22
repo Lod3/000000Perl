@@ -10,7 +10,3 @@ foreach (1..20)
     print "$_ squared is $square\n";   
 }
 
-my $bamm_bamm = 3;
-
-my $bammbamm += 1;
-

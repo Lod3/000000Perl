@@ -1,6 +1,325 @@
 PERL PERL PERL NOTEPAD 
 
 
+Learn Perl: 
+
+========== 2/17: https://www.youtube.com/watch?v=iEOXOQE20SU =======
+
+Scalar = either numbers or strings (comes from Awk)!
+
+numbers are always floating point.  
+Represented sanely 
+
+Numbers can be non-decimal 
+0777 0xFEEDBEEF 
+
+Strings:
+Sequence of chars (any bytes any length)
+
+String literal, can be single suoted
+'foo' 'longer string' 'don\'t leave home without it. 
+
+"\" takes away property. Takes away string power. 
+
+single quoted string
+variable stays in place. Pretty much as is, wysiwyg
+
+double quoted string " " more power.  Get backslash escapes bv: print "hello\n";
+- interpolate variables
+
+String operator
+
+concatonation
+ex: 'fred'.' '.'Flinstone' 
+Replication:
+'hello' x 3
+'hello x 3.5 
+
+scalar conversion
+
+13 + 5 . 'Monkeys
+
+strings can be used as numbers: 
+
+String to number conversion
+'12' / 3 = works 
+'12fred' / 3 = turns in number trailing non number scrap becomes number
+'fred' / 3 = 0 
+'12fred23 = perl ignores 23. 
+
+
+-Warnings: 
+#! /usr.perl + "-W" option 
+
+"use diagnostics;" after warnings errors that come up will look it self up in the perl documentation
+
+Scalar variable in Perl: 
+dollar sign one or more letters digits underscors
+ex: $a $1 $_ 
+variables are case sensitive 
+    lowercase for locals, captial for globals
+    perl doesn't care just a convention
+    
+Typically get value through assignment:
+$a = 3;
+$b = $a + 2;
+$b = $b * 4; same as "$b *=4" => combination assignment operators shortcut
+
+
+-Simple output: 
+Double quoted interpolation:
+$x = 3 + 4;
+print "hello, the answer is ", $x, "\n";
+
+Single quoted strings don't understand newline, \n 
+
+
+Comparison operators combination
+
+numeric Comparison
+== != < > <= >=
+
+string Comparison
+eq, equal ne, not equal lt, less than gt, greater than, le, less or equal to ge, greater or equal to
+
+--Use math symbols when dealing with numbers use words when dealing with words
+
+Simple "If"
+
+Choice based on comparison 
+
+if ($x > 3) {print "x is greater\n"}, else { print "x is less than or equal to 3\n"; }
+  
+                                        else is optional, usage of if is enough. 
+Braces are required ( r called blocks)
+
+
+Boolean logical
+Comparison can be stored
+$is_bigger = $x > 3;
+if ($is_bigger) {...}
+
+Whats in $in_bigger? "true " or "false" 
+false: 0, empty string '0' or undef
+
+Simple USer input
+$x = <STDIN>; line input function. Whatever you type in goes in to $x.  
+
+CHOMP: get rid of new line 
+chomp($x); 
+
+Typical they will be combined
+chomp($x = <STDIN> ); "()" are needed on this. 
+
+- Simple loops
+$c = 0;
+while ($c <10) { $c +=2; print "count is now $c\n" #gives 2 4 6 8 10 }
+
+test
+-- perl -Mstrict -We 'my $count = 0; while ($count <10) { $count +=2; print "The count is now $count\n"}' --
+
+
+ CPU TESTER: perl -Mstrict -We 'my $count = 0; while ($count <10) { $count -=2+31+3+4*44.3/4,2+4502*32,44**57739,44,444/23555,4/44**87666,744492999*222234444+57777777**989,8885843422**8,999999993; print "The count is now $count\n"}'
+
+- The Undef Value
+Initial value for all Variables
+treated like 0 for math
+
+
+Is it really undef or is it just 0 in an empty string
+Detect undef with defined()
+
+
+
+===========PART 3 / 17 LIST AND ARRAYS: https://www.youtube.com/watch?v=ClqY8cGa1q0&spfreload=5
+
+$fred[0] = "yabba";
+$fred[1] = "dabba";
+$fred[2] = "doo";
+
+        - This is the fred array, not the scalar fred, they both begin with dollar sign, 
+        - you have to look at the entire syntax as a unit. When perl sees fred[] It knows that it's the fred array
+
+
+Subscript expression can be any integer-yielding value:
+
+$n = 2;
+
+print $fred[$n]; #will print $fred[2]
+print $fred[$n / 3]; #truncates 2/3 to 0, thus $fred[0];
+
+Maximum element index available:
+$max = $#fred; #$max = 2
+$last = $fred[$#fred]; #always last element 
+
+
+out-of-bounds subscripts return undef:
+defined $fred[17]; #false, returns undef
+
+assign beyond end of array just stretches it:
+$fred[17] = "hello";
+
+    It's basic structure of an array we can access we can increase the size, we can access counting upward of downward.
+
+
+----List Literals:-----
+    List of Scalars, seperated by commas, enclosed in parens:
+
+(1,2,3) same as (1,2,3,) # trailing comma, doesn't change symantics at all. 
+("fred", 4.5) # 
+()#empty list 
+(1..100) #same as (1,2,3,... up to ...,98,99,100) - ".." is an operator in perl(5). Generator values from 1 to a 100
+                                                  - ".." runs at runtime, not fixed to compile time
+(0..$#fred) #all indices alle indexen
+
+
+Quoted Words:
+
+qw(fred barney betty wilma) #same as ("fred","barney","betty","wilma") without having to type all those quotes and commas
+                            #white space is arbitrary 
+qw[fred barney betty wilma] qw[ ] or qw<>
+
+works with paired delimters
+or duplicate non paired delimeters
+
+qw|foo bar|
+
+List literal can be handed directly to "print" 
+
+You can assign them to another list
+
+--List assignment:--
+
+corresponding values are copied:
+($fred, $barney, $dino) = ("Flinstone","ruble",undef); #extra values automatically get undef, 
+too short on the right ? extras get undef:
+($fred, $barneby, $dino) = qw(flinstone rubble);
+too short on the left? extras are ignored
+
+"=" the equel sign in this context becomes a list assignment operator, because There is a list on the left hand side.
+
+
+--"All Of the shortcut"---
+
+image assigning the consecutive array elements:
+($rock[0], $rock[1],$rock[2],$rock[3]) = qw (talc mica feldspar quartz);
+
+simpler: "all of the"
+@rocks = (talc mica feldspare quartz);
+
+Previous value is always completely erased
+
+can also be used on right side of assignment:
+
+($a,$b,$c,$d) = @rocks
+@his_rocks = @rocks;
+@her_rocks = ("diamond", @rocks,"emerald");
+
+--Array Operations--
+Remove end of array:
+
+@numbers = (1..10);
+$final = pop @numbers; #final gets 10 #pop argument takes an array removes its final element, and returns that value. 
+
+Adding items to end of array:
+push @numbers, 10..15; #Push adds numbers to the end of an array, (it is a destructive method, changing the array)
+
+
+add to beginning of array: 
+unshift @numbers, -10..0; #it works by sliding indexes in the array over to the left 
+
+Remove from beginning of array:
+$minus_ten = shift @numbers; #pulls first element of the array/list 
+
+---Array interpolation
+
+Single elements act like Scalars
+@rocks = qw(flinstone slate rubble);
+print "barney $rocks[2]\n"; #barney rubble\n
+
+"all of the" inserts spaces:
+print "got @rocks\n"; #got flinstone slate rubble\n
+
+beware email addresses in double quotes:
+print "my email address is merlyn@stonehenge.com\n"
+precede @ sign with \ to avoid interpolation # or put the email address in single quotes 'merlyn@stonehenge.com'; 
+                                            #or "merlyn\@stonehenge.com";
+
+--Using Foreach--
+
+Simplest way to walk a list:
+
+foreach $rock (qw(bedrock slate lave)) { print "one rock is $rock\n;}
+perl -Mstrict -wE 'foreach my $rock (qw(bedrock slate lava)) {print "one rock is $rock\n";}'
+$rock is set to each elmeent in the list in turns
+
+any outer $rock is unnafected
+
+Assigning to $rock affects the element.
+
+@rocks = qw(bedrock slate lava);
+foreach $rock (@rocks) {$rock = "hard $rock"}
+
+leaving variable off uses $_
+foreach (@rock) {$_ = "hard $_"} # leaving the variable of foreach, perl presumes the variable $_ 
+                                    # $_ is like any other scalar, perl defaults to $_ for a lot of Operations
+
+
+--- List Operations ---
+
+--reverse:
+
+@rocks = qw(bedrock slate rubble granite);
+@reversed = reverse @rocks;
+@rocks = reverse @rocks;
+ 
+reverse is nog destructive, it is taking a copy of the list and reversing that in memory and resulting that as the list
+It does not make sense to type "reverse @rocks", we told perl to make a copy of the list so we can reverse it and then throw that away.
+Therefore @rocks = reverse @rocks; 
+Otherwise warnings will come up ex: void context, use of reverse
+
+--Sort (stringwise):
+default string sorting in alphabetical order (ASCII order)
+
+@rocks = sort @rock;
+@rocks = reverse sort @rocks; 
+
+again sort is like reverse, it is not destructive 
+
+Reverse sort: 
+Perl recongnises the special sequence "reverse sort", will take the copy of the list and reverse the list, in descending order
+instead of ascending order. Perl doesn't bother with the intermediate step, it doesn't make 2 copies of the list.
+(1 for "reverse" and 1 for "sort"), it sends a flag to the start routine to say, sort descending rather than ascending.
+again "sort reverse @_" would be pointless and wasting CPU time 
+
+
+Default sort is not numeric: 
+@result = sort 97..102, #100, 101, 102, 97, 98, 99
+
+
+---Scalar and List and context
+
+--Important to recognize when Perl needs which:
+43 + Something # looking for a scalar, or evaluated in a scaler context
+sort something # looking for a list, sorting something is probably going to sort a list, so evaluating sort in a list context
+
+All operators provide a very well known context to all of their operands.
+
+...because some things return different values
+
+@people = qw(fred barney betty);
+@sorted = sort @people; #@people returns elements
+$number = 42 + @people; #@people returns 3 (count) using list context in a scalar context returns the number of items i/t array
+
+--Even assignment itself has context:
+@copy = @people; #list assignment (elements) copying people list into copy list
+$count = @people; #scalar assignment(count) scalar on the left hand sign, will copy the number of list items into $count
+
+ 
+
+
+
+
 
 
 ==========Numerical values / Numerieke waarden===== https://perlmaven.com/numerical-operators
@@ -20,6 +339,7 @@ my $y = 3;
  
 say $x + $y;  # 5
 say $x / $y;  # 0.666666666666667
+
 
 -------Shorthand operators---
 The expression $x += 3; is the shorthand version of $x = $x + 3;, they have exactly the same result:
@@ -262,7 +582,7 @@ while( my ($k, $v) = each %hash ) {
 }
 
 -------------------------------------------------------
-_____________________SUBROUTINE/FUCNTION______________
+_____________________SUBROUTINE/FUNCTION______________
 
 
 #                         \/                            
@@ -305,10 +625,15 @@ sub hello
     say "This is the hello function.';
 }
 
-#Lexical Scoping
+##################### Lexical Scoping ##########################
 #my variable inside the fucntion, "my" keyword creates variable with local scope.
 #$x inside function is used inside function block 
 #local variables will allways take precedent over outside variables
+#The variable is private to the enclosing block; in this case, that's the block
+#of the foreach loop. If There's no enclosing block, the variable is private to the entire source file.
+
+my $fred, $barney; #Wrong, fails to declare $barney
+my($fred, $barney); #declares both 
 
 #return values can return 0's or more scalar values as a list
 #
@@ -331,7 +656,7 @@ sub hello
 #     return ( 1, 2, 3, 4, 5 );
 # }
 
-# -------------Printing with eacht list element on new line------------------
+# -------------Printing with each list element on new line------------------
 
 # print qq($_\n) foreach func();
 # sub func
@@ -385,3 +710,36 @@ sub func
 {
    print foreach @_ ;
 }
+
+
+========== :: Omitting The Ampersand :: ========
+
+"If perl can see that it's a subroutine call without the ampersad from the syntax alone, that's generally fine 
+That is if you've got he parameter list in parenthesis, it's got to be a function call"
+
+ex: my @cards = shuffle(@deck_of_cards); #no & necessary on &shuffle
+
+sub division 
+{
+    $_[0] / $_[1]; 
+}
+
+my $quotient = division 355, 133;
+
+This works because of the rule that you may always omit parenthesis when you don't change the meaning of the code. You can't omit those parentheses if you use te & though.
+
+Don't put the subroutine declaration afther the invocation; if you do, the compiler won't know what the attempted invocation
+of division is all about The compiler has to see the definition before the invocation in order to use the subroutine
+call as if it were a built-in. Otherwise the compiler doesn't know what to do with that expression because 
+it doesn't know what C divisiion > is yet.
+
+
+======================= Persistent Private Variables ==============
+
+my var = ability to make private variables to the subroutine.
+Each time you called the subroutine you had to define them again.
+
+State = still private variables scoped to the subroutine Perl keep their values between calls
+
+
+

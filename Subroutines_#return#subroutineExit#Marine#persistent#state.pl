@@ -1,5 +1,10 @@
 #! /usr/perl
 use warnings;
+
+# Subroutines examples, Early Subroutine Exit
+
+
+
 # Subroutines Chapter 4 
 # sub marine
 # {
@@ -106,13 +111,39 @@ use warnings;
 # print "$t";
 
 
-$n = &max(12,11);
-sub max
-{
-  if ($_[0] > $_[1]){$_[0]} else {$_[1]};
+# $n = &max(12,11);
+# sub max
+# {
+#   if ($_[0] > $_[1]){$_[0]} else {$_[1]};
   
+# }
+
+# print "$n";
+
+#======== Early Subroutine Exit Finder list item inside list
+
+# my @names = qw(fred barney betty dino wilma);
+# my $result = &which_element_is("wilma", @names);
+# sub which_element_is
+# {
+#   my($what, @array) = @_;
+#   foreach (0..$#array) { #indices of @array's elements
+#     if ($what eq $array[$_]) {return $_}
+#   }
+#   -1;
+# }
+
+
+# ======= print $result;
+
+# Persistent But Local
+use v5.10; #State only works when 5.10 version is specified
+
+sub marine {
+  state $n = 0; #initial value
+  $n += 1;
+  print "Hello sailor number $n!\n";
 }
 
-print "$n";
-
+print &marine;
 

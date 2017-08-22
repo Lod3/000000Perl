@@ -1,6 +1,4 @@
-#!/usr/perl
-use warnings;
-use strict;
+
 
 my @names = qw(fred barny betty dino wilma);
 my $result = &which_element_is("dino, @names");

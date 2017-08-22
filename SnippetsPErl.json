@@ -9,7 +9,7 @@
 	// },
 
 "lode's bang for perl":{
-	"prefix": "bang",
+	"prefix": "Shebang - Warnings - Strict",
 	"body":[
 		"#!/usr/perl",
 		"use warnings;",
@@ -28,3 +28,4 @@
 }
 
 }
+
