@@ -315,9 +315,194 @@ $number = 42 + @people; #@people returns 3 (count) using list context in a scala
 @copy = @people; #list assignment (elements) copying people list into copy list
 $count = @people; #scalar assignment(count) scalar on the left hand sign, will copy the number of list items into $count
 
- 
+---List context <STDIN>
+
+--scalar context: one line at a time, undef at EOF
+
+--List context: all remaining lines:
+    @lines = <STDIN>; #entered lines, returns all entered lines, 4 ex: 47 lines waiting to be read, you get 47 seperate elements in @lines
+                        #all of them will have "\n" new line operators on the end, CHOMP to get rid of them ? 
+                        # 
+
+kill those newlines:
+chomp(@lines = <STDIN>);
+
+reading input from the terminal it will read the input untill "terminal end of file,(EOF)" unix, -> CTRL + D to send EOF input.
+
+<STDIN> notice it is the same syntax as for scalar context of list context, we get related operations, read one line read all the lines
+
+<STDIN> be aware it does bring the entire list into memory, not a good idea to read big files. 
 
 
+===========PART 4 / 17 Subroutins / Functions: https://www.youtube.com/watch?v=JQ8MLq_Bfpo ====
+
+
+Subroutines: Define subroutine, chunk of code that has a name that you can invoke from somewhere else in the program.
+
+Define with keyword "sub":
+sub marine {
+    $n += 1; #global dollar N increment by 1 -> += 
+    print "hello sailer number $n!\n"; 
+}
+
+Invoke in an expression with & in front of name:
+&marine; # Hello sailor number 1
+&marine; # Hello sailer number 2 
+
+--Last expression evaluated is return value:
+Return value: What ever the last expression evaluated in the subroutine is also automatically returned back as the return value
+for the subroutine
+
+sub add_a_to_b {
+    print "hey, I was invoked!\n':
+    $a + $b;
+}
+$a = 3; $b = 4; $c = &add_a_to_b; 
+
+#output will print return 7. 
+
+#When inverting the two statements in the subroutine; I would a to b = 7 would be just thrown away, because the Last
+#thing is print. Print has a return value, so the return value would return true or false. 
+
+sub add_a_to_b {
+    $a + $b;
+    print "hey, I was invoked!\n':
+}
+
+
+--Not Necessarily textually last:
+#The last expression evaluated is not necessary what's on the last line of the subroutine, 
+#We could have control structures, loops etc , so it's whatever we get to last at runtime.
+
+sub bigger_of_a_or_b {
+    if ($a > $b) {$a} else {$b} #assign value to a assign a value to b and call subroutine and subroutine is going to call the 
+ }                              #and the subroutine is going to return the larger of the two. 
+                                #and it does it by if a is greater than b, mathematically or numerically, can we evaluate $a
+                                #it doesnt change $a, but it makes it the last value evaluated, so that's going to be the return value
+                                #now if we go of to the "else" branch instead because a is less or equal to b, then we get b evaluated
+                                #which makes IT the larger of the two. 
+    
+
+Whatever is evaluated last at runtime, is also automatically the return value of the subroutine
+
+
+---Arguments
+
+--Values passed in parens get assigned to @_ 
+
+$n = &max(10,15); #Arguments being passed in to the subroutine. 
+sub max {                                       
+    if ($_[0] > $_[1]) {$_[0]} else {$_[1]}            # 10 will become $_[0] 15 will become $_[1]
+}
+                                                        #
+--Note that @_ has nothing to do with $_
+#Whatever list of values gets passed in gets assigned to @_
+
+--@_ is local to the subroutine.
+If subroutine would be calling another subroutine, it would be gettings it's own @_ (underscore array) etc.
+It even works recursively, if subroutine calls itself, each new invokation layer gets a new @_.
+
+--Perl doesn't care if you pass too many of too few.
+If more elements are passed than referenced, it will ignore the extra indices. Under the condition of 1 element(10, ),
+will return undef. And would be warnable. 
+
+
+---Creating Local Sub variables ---
+
+--Use "my" to create your own local vars 
+
+sub max {
+    my ($x, $y);
+    ($x,$y) = @_; #copy arguments to $x, $y
+    if ($x > $y) {$x} else {$y}
+
+    }
+
+-- Variables declared in my() are local to block
+
+-- Steps can be combined
+my($x,$y) = @_;
+
+-- Typical first line of a subroutine
+
+-- Or maybe; 
+my $x = shift, my $y = shift; #shift will take the first argument in the list and throw it in $x
+                                #(shifting empty array not warnable offence)
+                                #  
+            example: my $x = shift if @_  # if is looking for true or false value, if @_, would look for empty or not array.            
+
+---Variable Arg List
+
+What if I want &max to a variable number of arguments 
+--Just respond to all of @_;
+
+(2,10,3)
+
+sub max {
+    my $best = shift; #shifting off the first parameter, 2, goes to $best, foreach is going to go over it twice, first, $next = 10, we check if $next is greater than current item we have,(best, 2). 
+    foreach $next (@_){         #if it's better(larger), we keep it. 
+        if ($next > $best) {$best = $next} #foreach loop is empty, 
+    }
+    $best;
+}
+
+Now it works for 15 args, 2 args, 1 args, even 0 args!
+
+--- "my" not just for subs ---
+
+-- lexical vars (introduced with my()) works in any block
+
+foreach (1..10) {
+    my $square = $_ * $_; 
+    print "$_ squared is $square\n";
+}
+
+--- "Use Strict" ---
+
+Ensure declared variable names:
+use strict; # at top of file
+
+--Now all user-defined vars must be "introduced"
+
+my $x = 3;
+$x; #ok 
+$y; #not ok.. no "my" in scoped
+{
+    my $z;
+    $z; #ok
+}
+$z; # not ok (out of scope)
+
+
+
+--- Early Subroutine Exit --- 
+
+--Break out of a subroutine with "return" 
+
+--sets the return value as a side effect
+    my @names = qw(fred barneby betty dino wilma); 
+    my @result = &which_element_is("dino",@names); 
+    sub which_element_is {
+        my($what, @array) = @_;
+        foreach (0..$#array){ #indices of @array's elements
+        if ($what eq $array[$_]{return $_}
+        }
+    -1; #not found
+    }
+
+
+# Most legacy code has no explicit returns
+#
+state introduced in 5.10
+
+====Persistent but local ===
+
+--- Back to first exmple
+sub marine {
+state $n = 0; #initial value
+$n += 1;
+print "Hello, sailor number $n!\n";
+}
 
 
 
