@@ -504,6 +504,67 @@ $n += 1;
 print "Hello, sailor number $n!\n";
 }
 
+========= Input and Output (05/17) - https://www.youtube.com/watch?v=iPtU8VWxiq8 ====
+
+
+=== Reading to EOF ===
+
+--Reading a line: 
+    chomp(my $line = <STDIN>);
+
+--Reading all lines, one at a time: # 
+    while (defined(my $line = <STDIN>)){ # assigning the line input  operator assigning it to $line (introducing variable with "my") #defined
+        do something with $line;         # return value of the line input operator is that, next line can be read or undef if we have end of file. 
+    }                                    # defined function is evaluating the result of that assignment to see whether it's undef or not.
+                                         # while will keep going if there are lines, don't keep going if there is none. 
+
+--shortcut for defined($_ =<STDIN>)
+    while (<STDIN>) {...}
+-- Very common thing to do.--
+
+--Don't confuse with:
+foreach (<STDIN>)
+
+
+---Filters
+
+--Act like a unix Filter
+    -read from files named on command line
+    -write to standard output
+    -any "-" arg, or no args at all:read standard input 
+
+-- Perl uses <> (diamond) for this:
+    while (<>) {
+        #one line is in $_
+    }
+
+--Invoke like a filter:
+    ./myprogram fred barney betty
+
+
+--- @ARGV
+
+--Really a two step process
+    - Args copied into @ARGV at startuo
+    - <> looks at current @ARGV
+--Common to alter @ARGV before diamond:
+    if ($ARGV[0] eq "-v"){
+        $verbose = l; shift; #inside subroutine shift shifts $_ outside subroutine, shift shifts @ARGV array
+    
+    }
+    while (<>) {...} #now process lines
+
+
+--- Formatting Output ---
+
+--Use printf:
+    --printf "hello %s, your password expires in %d days!\n",
+        $user, $expires;
+
+
+
+
+
 
 
 
