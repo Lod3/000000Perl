@@ -45,3 +45,22 @@ while (<>) {                                  #
     chomp;
     print "$_";                               #Print only input file content stored in $_ 
 }
+
+# my $result = print("hello world!\n"); #Print has a return value. 
+
+# print "$result"; #1 or 0, true or false
+
+#ex of mistake
+# my $result = print (2+3)*4;
+# print "$result"; #prints 5 rather than 20 because it prints 5 (2+3) and takes the true or false value of print (1) and multiplies that times 4 
+                 #and it throws away the product. 
+                    # print without parentheses is a list operator. 
+                    # 
+# my $result = print((2+3) * 4);
+
+# print "$result";
+#                     #if print is followed by an opening parenthesis make sure that he corresponding closing parenthesis comes after 
+                    #all of the arguments to that function.
+
+
+
