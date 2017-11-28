@@ -42,7 +42,7 @@ sub get_files {
 	
 	closedir(INPUTDIR);
 	
-	@files = grep(/\.xml$/i, @files);
+	@files = grep(/\.xml$/i, @files); # . or dot works a wildcard hence "\." to search for actuale .x files. $ fixes regular expression to the end.
 	
 	return @files;
 }
